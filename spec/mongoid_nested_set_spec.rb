@@ -55,7 +55,7 @@ describe "A Mongoid::Document" do
     nodes.each_value do |node|
       # As soon as there is no upsert callbacks set
       # this is effectively identical to the straight driver call
-      node.with(:conllection => collection_name).upsert
+      node.with(:collection => collection_name).upsert
       node.new_record = false
     end
     nodes
@@ -682,11 +682,11 @@ describe "A Mongoid::Document" do
 
       it "can rebuild nested set properties for specified scope" do
         Node.rebuild!( scope: 2 )
-        
+
         root = Node.where( root_id: 1 ).root
         root.should be_a(Node)
         root.rgt.should == nil
-        
+
         root = Node.where( root_id: 2 ).root
         root.should be_a(Node)
         root.name.should == 'Electronics'
