@@ -66,11 +66,11 @@ describe "A Mongoid::Document" do
 
   context "that does not act as a nested set" do
     it "does not have a left field" do
-      NodeWithoutNestedSet.should_not have_field('lft', :type => Integer)
+      NodeWithoutNestedSet.should_not have_field('lft').of_type(Integer)
     end
 
     it "does not have a right field" do
-      NodeWithoutNestedSet.should_not have_field('rgt', :type => Integer)
+      NodeWithoutNestedSet.should_not have_field('rgt').of_type(Integer)
     end
 
     it "does not include NestedSet methods" do
@@ -135,26 +135,26 @@ describe "A Mongoid::Document" do
     # Adds fields
 
     it "has a left field" do
-      Node.should have_field('lft', :type => Integer)
-      RenamedFields.should have_field('red', :type => Integer)
-      RenamedFields.should_not have_field('lft', :type => Integer)
+      Node.should have_field('lft').of_type(Integer)
+      RenamedFields.should have_field('red').of_type(Integer)
+      RenamedFields.should_not have_field('lft').of_type(Integer)
     end
 
     it "has a right field" do
-      Node.should have_field('rgt', :type => Integer)
-      RenamedFields.should have_field('red', :type => Integer)
-      RenamedFields.should_not have_field('rgt', :type => Integer)
+      Node.should have_field('rgt').of_type(Integer)
+      RenamedFields.should have_field('red').of_type(Integer)
+      RenamedFields.should_not have_field('rgt').of_type(Integer)
     end
 
     it "has a parent field" do
       # Starting in Mongoid 2.0.rc1, all foreign keys are Objects
-      Node.should have_field('parent_id', :type => Object)
-      RenamedFields.should have_field('mother_id', :type => Object)
-      RenamedFields.should_not have_field('parent_id', :type => Object)
+      Node.should have_field('parent_id').of_type(Object)
+      RenamedFields.should have_field('mother_id').of_type(Object)
+      RenamedFields.should_not have_field('parent_id').of_type(Object)
     end
 
     it "does not have a number field" do
-      Node.should_not have_field('number', :type => String)
+      Node.should_not have_field('number').of_type(String)
     end
 
     it "has a default left field name" do
@@ -191,17 +191,13 @@ describe "A Mongoid::Document" do
     end
 
     it "does not allow assigning the left field" do
-      # expect { Node.new.lft = 1 }.to raise_error(NameError)
-      # expect { RenamedFields.new.red = 1 }.to raise_error(NameError)
-      expect { Node.new.lft = 1 }.to raise_error
-      expect { RenamedFields.new.red = 1 }.to raise_error
+      expect { Node.new.lft = 1 }.to raise_error(NameError)
+      expect { RenamedFields.new.red = 1 }.to raise_error(NameError)
     end
 
     it "does not allow assigning the right field" do
-      # expect { Node.new.rgt = 1 }.to raise_error(NameError)
-      # expect { RenamedFields.new.black = 1 }.to raise_error(NameError)
-      expect { Node.new.rgt = 1 }.to raise_error
-      expect { RenamedFields.new.black = 1 }.to raise_error
+      expect { Node.new.rgt = 1 }.to raise_error(NameError)
+      expect { RenamedFields.new.black = 1 }.to raise_error(NameError)
     end
 
 
@@ -735,7 +731,7 @@ describe "A Mongoid::Document" do
     end
 
     it "has a number field" do
-      NumberingNode.should have_field('number', :type => String)
+      NumberingNode.should have_field('number').of_type(String)
     end
 
     context "in a tree" do

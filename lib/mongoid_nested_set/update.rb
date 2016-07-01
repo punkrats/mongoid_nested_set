@@ -125,8 +125,7 @@ module Mongoid::Acts::NestedSet
           left += width
         end
 
-        client = scope_class.mongo_client
-        collection = client[scope_class.collection_name]
+        collection = scope_class.collection
         scope = nested_set_scope.remove_order_by
 
         # allocate space for new move

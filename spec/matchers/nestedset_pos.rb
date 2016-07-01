@@ -36,6 +36,26 @@ module Mongoid::Acts::NestedSet
         )
       end
 
+      def failure_message
+        sprintf("expected nested set position: {left: %2s, right: %2s}\n" +
+                "                         got: {left: %2s, right: %2s}",
+          @lft,
+          @rgt,
+          @node.respond_to?('left')  ? @node.left  : '?',
+          @node.respond_to?('right') ? @node.right : '?'
+        )
+      end
+
+      def failure_message_when_negated
+        sprintf("expected nested set to not have position: {left: %2s, right: %2s}\n" +
+                "                         got: {left: %2s, right: %2s}",
+          @lft,
+          @rgt,
+          @node.respond_to?('left')  ? @node.left  : '?',
+          @node.respond_to?('right') ? @node.right : '?'
+        )
+      end
+
       def failure_message_for_should_not
         sprintf("expected nested set to not have position: {left: %2s, right: %2s}", @lft, @rgt)
       end

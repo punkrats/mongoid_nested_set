@@ -26,8 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'simplecov-rcov'
-  s.add_development_dependency 'mongoid-rspec'
-
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'rspec-expectations'
+  s.add_development_dependency 'mongoid-rspec', '3.0.0'
 end

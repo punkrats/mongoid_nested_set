@@ -32,7 +32,8 @@ Dir["#{File.dirname(__FILE__)}/matchers/*.rb"].each {|file| require file }
 Mongoid.load!("#{File.dirname(__FILE__)}/mongoid.yml", :test)
 
 RSpec.configure do |config|
-  config.include Mongoid::Matchers, type: :model
+  config.include Mongoid::Matchers
+  #config.expect_with(:rspec) { |c| c.syntax = :should }
 
   config.before(:suite) do
     DatabaseCleaner[:mongoid, {client: :default }]
