@@ -129,27 +129,27 @@ module Mongoid::Acts::NestedSet
         scope = nested_set_scope.remove_order_by
 
         # allocate space for new move
-        collection.find(
+        update_many(collection.find(
           scope.gte(left_field_name => bound).selector
-        ).update_many("$inc" => { left_field_name => width })
+        ), "$inc" => { left_field_name => width })
 
-        collection.find(
+        update_many(collection.find(
           scope.gte(right_field_name => bound).selector
-        ).update_many("$inc" => { right_field_name => width })
+        ), "$inc" => { right_field_name => width })
 
         # move the nodes
-        collection.find(
+        update_many(collection.find(
           scope.and(left_field_name => {"$gte" => left}, right_field_name => {"$lt" => left + width}).selector
-        ).update_many("$inc" => { left_field_name => distance, right_field_name => distance })
+        ), "$inc" => { left_field_name => distance, right_field_name => distance })
 
         # remove the hole
-        collection.find(
+        update_many(collection.find(
           scope.gt(left_field_name => right).selector
-        ).update_many("$inc" => { left_field_name => -width })
+        ), "$inc" => { left_field_name => -width })
 
-        collection.find(
+        update_many(collection.find(
           scope.gt(right_field_name => right).selector
-        ).update_many("$inc" => { right_field_name => -width })
+        ), "$inc" => { right_field_name => -width })
 
         self.mongoid_set(parent_field_name, new_parent)
         self.reload_nested_set
@@ -172,6 +172,13 @@ module Mongoid::Acts::NestedSet
       self
     end
 
+    def update_many(q, set)
+      if q.respond_to?(:update_all)
+        q.update_all(set)
+      else
+        q.update_many(set)
+      end
+    end
 
     # Update cached level attribute
     def update_depth

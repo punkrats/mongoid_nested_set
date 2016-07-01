@@ -22,9 +22,13 @@ module Mongoid::Acts::NestedSet
         # set right
         right = (indices[scope.call(node)] += 1)
 
-        node.class.collection.find(:_id => node.id).update_one(
-          {"$set" => {left_field_name => left, right_field_name => right}},
-        )
+        q = node.class.collection.find(:_id => node.id)
+        set = {"$set" => {left_field_name => left, right_field_name => right}}
+        if q.respond_to?(:update_one)
+          q.update_one(set)
+        else
+          q.update(set)
+        end
       end
 
       # scope rebuild for specified node
