@@ -5,12 +5,5 @@ notifications:
   email: false
 
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-  - jruby-20mode
+  - 2.3.3
 
-gemfile:
-  - gemfiles/mongoid-3.1.gemfile
-  - gemfiles/mongoid-4.0.gemfile
-  - gemfiles/am-4.1.gemfile
