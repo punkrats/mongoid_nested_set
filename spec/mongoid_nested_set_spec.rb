@@ -55,7 +55,9 @@ describe "A Mongoid::Document" do
     nodes.each_value do |node|
       # As soon as there is no upsert callbacks set
       # this is effectively identical to the straight driver call
-      node.with(:collection => collection_name).upsert
+      node.with(:collection => collection_name) do |n|
+        n.upsert
+      end
       node.new_record = false
     end
     nodes

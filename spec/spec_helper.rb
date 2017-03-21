@@ -20,7 +20,7 @@ if ENV['COVERAGE'] == 'yes'
   end
 
   SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
-  SimpleCov.start 
+  SimpleCov.start
 end
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
