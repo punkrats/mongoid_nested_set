@@ -3,11 +3,10 @@ Mongoid Nested Set
 
 [![Gem Version](https://badge.fury.io/rb/glebtv-mongoid_nested_set.png)](http://badge.fury.io/rb/glebtv-mongoid_nested_set)
 [![Build Status](https://travis-ci.org/glebtv/mongoid_nested_set.png?branch=master)](https://travis-ci.org/glebtv/mongoid_nested_set)
-[![Dependency Status](https://gemnasium.com/glebtv/mongoid_nested_set.png)](https://gemnasium.com/glebtv/mongoid_nested_set)
 
 Mongoid Nested Set is an implementation of the nested set pattern for Mongoid.
 It is a port of [AwesomeNestedSet for ActiveRecord](https://github.com/galetahub/awesome_nested_set).
-It supports Mongoid 3/4 and Rails 3/4.
+It supports Mongoid 4+ and Rails 4+
 
 Nested Set represents hierarchies of trees in MongoDB using references rather
 than embedded documents.  A tree is stored as a flat list of documents in a
@@ -26,7 +25,7 @@ Install as Gem
 
 via Gemfile
 
-    gem 'glebtv-mongoid_nested_set', '~> 0.4.2'
+    gem 'glebtv-mongoid_nested_set', '~> 0.7.0'
 
 
 ## Usage
