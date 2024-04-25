@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency 'mongoid', [">= 6.0", "< 8.0"]
+  s.add_runtime_dependency 'mongoid', [">= 6.0", "< 9.0"]
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'simplecov-rcov'
   s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'database_cleaner-mongoid'
   s.add_development_dependency 'rspec-expectations'
   s.add_development_dependency 'mongoid-rspec'
 end

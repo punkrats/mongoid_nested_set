@@ -2,6 +2,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
 require 'database_cleaner'
+require 'database_cleaner-mongoid'
 require 'active_support'
 require 'active_support/deprecation'
 require 'mongoid'
@@ -36,12 +37,11 @@ RSpec.configure do |config|
   #config.expect_with(:rspec) { |c| c.syntax = :should }
 
   config.before(:suite) do
-    DatabaseCleaner[:mongoid, {client: :default }]
-    DatabaseCleaner[:mongoid].strategy = :truncation
+    DatabaseCleaner[:mongoid].strategy = :deletion
   end
 
   config.before(:each) do
-    DatabaseCleaner.clean
+    DatabaseCleaner[:mongoid].clean
   end
 
   config.include(Mongoid::Acts::NestedSet::Matchers)

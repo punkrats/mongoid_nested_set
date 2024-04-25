@@ -220,7 +220,12 @@ module Mongoid::Acts::NestedSet
         conditions = scopes.inject({}) do |conditions,attr|
           conditions.merge attr => self[attr]
         end unless scopes.empty?
-        scope_class.criteria.where(conditions).asc(left_field_name)
+
+        if conditions.nil?
+          scope_class.criteria.asc(left_field_name)
+        else
+          scope_class.criteria.where(conditions).asc(left_field_name)
+        end
       end
 
 
