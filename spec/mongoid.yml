@@ -3,9 +3,9 @@ test:
     default:
       database: mongoid_nested_set_test
       hosts:
-        - localhost:27018
+        - localhost:27017
       options:
-        user: 'admin'
-        password: 'rs123456'
-        auth_source: admin
-
+        read:
+          mode: :primary
+        max_pool_size: 1
+        wait_queue_timeout: 5
